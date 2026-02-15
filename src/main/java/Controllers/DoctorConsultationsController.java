@@ -1,4 +1,4 @@
-package controller;
+package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.AppointmentRequest;
+import models.Client;
 import service.AppointmentRequestService;
+import service.ClientService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,26 +30,23 @@ import java.util.stream.Collectors;
 
 public class DoctorConsultationsController implements Initializable {
 
-    // ── Hardcoded until session exists ───────────────────────────
     private static final long DOCTOR_ID = 16L;
 
-    // ── FXML ─────────────────────────────────────────────────────
     @FXML private VBox      cardsContainer;
     @FXML private VBox      emptyState;
     @FXML private TextField searchField;
     @FXML private Label     subtitleLabel;
     @FXML private Label     statsCount;
 
-    // ── State ─────────────────────────────────────────────────────
-    private final AppointmentRequestService service = new AppointmentRequestService();
+    private final AppointmentRequestService service       = new AppointmentRequestService();
+    private final ClientService             clientService = new ClientService();  // ← NEW
+
     private List<AppointmentRequest> appointments;
 
     private static final DateTimeFormatter DATE_FMT =
             DateTimeFormatter.ofPattern("dd MMM yyyy");
     private static final DateTimeFormatter DATETIME_FMT =
             DateTimeFormatter.ofPattern("dd MMM yyyy  'at'  HH:mm");
-
-    // ── Init ──────────────────────────────────────────────────────
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,7 +55,6 @@ public class DoctorConsultationsController implements Initializable {
 
     private void loadAppointments() {
         try {
-            // Fetch ALL appointments for this doctor, keep only CONFIRMED
             appointments = service.getAllAppointments().stream()
                     .filter(a -> a.getDoctorId() == DOCTOR_ID)
                     .filter(a -> "CONFIRMED".equals(a.getStatus()))
@@ -67,8 +65,6 @@ public class DoctorConsultationsController implements Initializable {
         }
         renderCards(appointments);
     }
-
-    // ── Search ────────────────────────────────────────────────────
 
     @FXML private void handleSearch() {
         String q = searchField.getText() == null ? "" : searchField.getText().toLowerCase().trim();
@@ -85,13 +81,9 @@ public class DoctorConsultationsController implements Initializable {
         renderCards(appointments);
     }
 
-    // ── Card rendering ────────────────────────────────────────────
-
     private void renderCards(List<AppointmentRequest> list) {
-        // Remove all real cards (HBox nodes), keep emptyState VBox
         cardsContainer.getChildren().removeIf(n -> n instanceof HBox);
 
-        // Update stats pill
         statsCount.setText(String.valueOf(list.size()));
         subtitleLabel.setText(list.size() + " confirmed appointment"
                 + (list.size() == 1 ? "" : "s") + " awaiting consultation");
@@ -106,11 +98,18 @@ public class DoctorConsultationsController implements Initializable {
         emptyState.setManaged(false);
 
         for (AppointmentRequest appt : list) {
-            cardsContainer.getChildren().add(buildCard(appt));
+            // ── Resolve client; fall back gracefully if fetch fails ──
+            Client client = null;
+            try {
+                client = clientService.getById(appt.getClientId());
+            } catch (Exception e) {
+                System.err.println("[DoctorConsultationsController] Client fetch error: " + e.getMessage());
+            }
+            cardsContainer.getChildren().add(buildCard(appt, client));
         }
     }
 
-    private HBox buildCard(AppointmentRequest appt) {
+    private HBox buildCard(AppointmentRequest appt, Client client) {
 
         // ── Left colour strip ──────────────────────────────────
         VBox strip = new VBox();
@@ -118,21 +117,15 @@ public class DoctorConsultationsController implements Initializable {
         strip.setPrefWidth(6);
         strip.setMinHeight(140);
 
-        // ── Client avatar (initials from clientId for now) ─────
-        // TODO: replace with real client name once you add a ClientService
-        String initials = "C" + appt.getClientId(); // e.g. "C42"
-        Label avatarText = new Label(initials.length() > 2
-                ? initials.substring(0, 2).toUpperCase()
-                : initials.toUpperCase());
-        avatarText.getStyleClass().add("client-avatar-text");
-        StackPane avatar = new StackPane(avatarText);
-        avatar.getStyleClass().add("client-avatar");
-        avatar.setStyle("-fx-margin: 0 0 0 20;");
+        // ── Resolve display values from Client (or fallback to ID) ─
+        String fullName = (client != null) ? client.getFullname().trim() : "Client #" + appt.getClientId();
+        String email    = (client != null && client.getEmail() != null) ? client.getEmail() : "—";
+        String phone    = (client != null && client.getPhone() != null) ? client.getPhone() : "—";
 
         // ── Info VBox ──────────────────────────────────────────
-        // Row 1: client name + badges
-        Label clientName = new Label("Client #" + appt.getClientId());
-        clientName.getStyleClass().add("client-name");
+        // Row 1: full name + badges
+        Label clientNameLabel = new Label(fullName);
+        clientNameLabel.getStyleClass().add("client-name");
 
         Label statusBadge = new Label("CONFIRMED");
         statusBadge.getStyleClass().addAll("status-badge", "status-confirmed");
@@ -140,10 +133,16 @@ public class DoctorConsultationsController implements Initializable {
         Label typeBadge = new Label(appt.getType());
         typeBadge.getStyleClass().add("type-badge");
 
-        HBox nameRow = new HBox(10, clientName, statusBadge, typeBadge);
+        HBox nameRow = new HBox(10, clientNameLabel, statusBadge, typeBadge);
         nameRow.setAlignment(Pos.CENTER_LEFT);
 
-        // Row 2: confirmed date
+        // Row 2: email + phone ── NEW
+        HBox contactRow = new HBox(20,
+                metaChip("✉", email),
+                metaChip("📞", phone));
+        contactRow.setAlignment(Pos.CENTER_LEFT);
+
+        // Row 3: confirmed date
         Label calIcon = new Label("📅");
         calIcon.setStyle("-fx-font-size: 12;");
         Label confirmedDateLabel = new Label(
@@ -155,15 +154,12 @@ public class DoctorConsultationsController implements Initializable {
         confirmedRow.getStyleClass().add("confirmed-date-box");
         confirmedRow.setAlignment(Pos.CENTER_LEFT);
 
-        // Row 3: meta
-        HBox clientMeta = metaChip("👤", "Client #" + appt.getClientId());
-        HBox apptMeta   = metaChip("🆔", "Appt #" + appt.getId());
-        HBox dateMeta   = metaChip("🗓", "Created " + appt.getCreationDate().format(DATE_FMT));
-
-        HBox metaRow = new HBox(20, clientMeta, apptMeta, dateMeta);
+        // Row 4: meta
+        HBox dateMeta = metaChip("🗓", "Created " + appt.getCreationDate().format(DATE_FMT));
+        HBox metaRow = new HBox(20, dateMeta);
         metaRow.setAlignment(Pos.CENTER_LEFT);
 
-        VBox infoBox = new VBox(8, nameRow, confirmedRow, metaRow);
+        VBox infoBox = new VBox(8, nameRow, contactRow, confirmedRow, metaRow);
         infoBox.setStyle("-fx-padding: 18 16 18 16;");
         HBox.setHgrow(infoBox, Priority.ALWAYS);
 
@@ -179,14 +175,24 @@ public class DoctorConsultationsController implements Initializable {
         actionBox.setStyle("-fx-padding: 0 24 0 0;");
 
         // ── Assemble ───────────────────────────────────────────
-        HBox card = new HBox(0, strip, avatar, infoBox, actionBox);
+        HBox card = new HBox(0, strip, infoBox, actionBox);
         card.getStyleClass().add("doc-appt-card");
         card.setAlignment(Pos.CENTER_LEFT);
 
         return card;
     }
 
-    /** Small icon + text label used for meta row */
+    private String getInitials(String name) {
+        if (name == null || name.isEmpty()) return "?";
+        String[] parts = name.split(" ");
+        StringBuilder initials = new StringBuilder();
+        for (String p : parts) {
+            if (!p.isEmpty()) initials.append(p.charAt(0));
+            if (initials.length() >= 2) break;
+        }
+        return initials.toString().toUpperCase();
+    }
+
     private HBox metaChip(String icon, String text) {
         Label i = new Label(icon);
         i.setStyle("-fx-font-size: 11;");
@@ -197,16 +203,14 @@ public class DoctorConsultationsController implements Initializable {
         return box;
     }
 
-    // ── Open consultation form ────────────────────────────────────
-
     private void openConsultationForm(AppointmentRequest appt) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/view/doctor/AddConsultationDoctor.fxml"));
+                    getClass().getResource("/fxml/consultationview/Addconsultationdoctor.fxml"));
             Parent root = loader.load();
 
             AddConsultationDoctorController ctrl = loader.getController();
-            ctrl.initData(appt, DOCTOR_ID);   // ← pass appointment + doctorId
+            ctrl.initData(appt, DOCTOR_ID);
 
             Stage stage = new Stage();
             stage.setTitle("New Consultation — Appt #" + appt.getId());
@@ -216,7 +220,6 @@ public class DoctorConsultationsController implements Initializable {
             stage.setResizable(false);
             stage.showAndWait();
 
-            // Refresh after save
             loadAppointments();
 
         } catch (IOException e) {

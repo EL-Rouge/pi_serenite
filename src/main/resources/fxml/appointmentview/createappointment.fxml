@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="controller.CreateAppointmentController"
+<BorderPane fx:controller="Controllers.Appointment.CreateAppointmentController"
             stylesheets="@../../css/styles.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 

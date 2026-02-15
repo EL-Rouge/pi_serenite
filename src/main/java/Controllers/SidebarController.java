@@ -1,9 +1,8 @@
-package controller;
+package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -20,9 +19,7 @@ public class SidebarController {
 
     @FXML private void handleDashboard()     { navigateTo("/view/Dashboard.fxml"); }
     @FXML private void handleAppointments()  { navigateTo("/view/client/ClientAppointments.fxml"); }
-
-    @FXML
-    private void handleConsultations() {
+    @FXML private void handleConsultations() {
         navigateTo("/fxml/consultationview/DoctorConsultationView.fxml");
     }
 

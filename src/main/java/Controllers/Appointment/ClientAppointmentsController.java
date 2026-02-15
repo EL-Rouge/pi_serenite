@@ -1,4 +1,4 @@
-package controller;
+package Controllers.Appointment;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

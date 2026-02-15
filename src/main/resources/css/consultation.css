@@ -1,0 +1,168 @@
+/* ═══════════════════════════════════════════════════
+   consultation-dialog.css
+   Refined, clinical design for the Add Consultation popup
+   ═══════════════════════════════════════════════════ */
+
+/* ── Root ─────────────────────────────────────────── */
+.dialog-root {
+    -fx-background-color: #FAFAFA;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.22), 32, 0, 0, 8);
+}
+
+/* ── Header ───────────────────────────────────────── */
+.dialog-header {
+    -fx-background-color: #0D1B2A;
+    -fx-background-radius: 16 16 0 0;
+}
+
+.dialog-title {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.dialog-subtitle {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11px;
+    -fx-text-fill: #7A9BB5;
+    -fx-letter-spacing: 0.5px;
+}
+
+/* ── Meta strip ───────────────────────────────────── */
+.meta-strip {
+    -fx-background-color: #132338;
+}
+
+.meta-chip {
+    -fx-padding: 14 16 14 16;
+}
+
+.meta-chip-mid {
+    -fx-border-color: transparent #2A4A6B transparent #2A4A6B;
+    -fx-border-width: 0 1 0 1;
+}
+
+.meta-chip-label {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 9px;
+    -fx-text-fill: #5A80A0;
+    -fx-letter-spacing: 1.2px;
+}
+
+.meta-chip-value {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C8DCF0;
+}
+
+/* ── Form body ────────────────────────────────────── */
+.dialog-body {
+    -fx-background-color: #FAFAFA;
+}
+
+.field-label {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0D1B2A;
+    -fx-letter-spacing: 0.8px;
+}
+
+.field-textarea {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 13px;
+    -fx-text-fill: #1A2C3D;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0DDE8;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 12 10 12;
+    -fx-prompt-text-fill: #A0B4C5;
+}
+
+.field-textarea:focused {
+    -fx-border-color: #1D6FA4;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(29,111,164,0.15), 8, 0, 0, 0);
+}
+
+.field-date-picker {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 13px;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0DDE8;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.field-date-picker:focused {
+    -fx-border-color: #1D6FA4;
+    -fx-border-width: 2;
+}
+
+/* ── Error label ──────────────────────────────────── */
+.error-label {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11px;
+    -fx-text-fill: #C0392B;
+    -fx-background-color: #FDECEA;
+    -fx-padding: 8 12 8 12;
+    -fx-border-color: #E8A09A;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+/* ── Footer ───────────────────────────────────────── */
+.dialog-footer {
+    -fx-background-color: #F0F4F8;
+    -fx-border-color: #DDE6EF transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-background-radius: 0 0 16 16;
+}
+
+.btn-cancel {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 12px;
+    -fx-text-fill: #4A6070;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #C0CDD8;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 0 10 0;
+    -fx-cursor: hand;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #EEF2F6;
+    -fx-border-color: #9AAABB;
+}
+
+.btn-save {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #0D6FA4;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 0 10 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(13,111,164,0.35), 10, 0, 0, 3);
+}
+
+.btn-save:hover {
+    -fx-background-color: #0A5A8A;
+    -fx-effect: dropshadow(gaussian, rgba(13,111,164,0.5), 14, 0, 0, 4);
+}
+
+.btn-save:pressed {
+    -fx-background-color: #084870;
+    -fx-effect: none;
+}

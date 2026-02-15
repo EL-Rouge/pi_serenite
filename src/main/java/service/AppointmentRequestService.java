@@ -92,4 +92,5 @@ public class AppointmentRequestService {
         repository.saveProposedDates(app.getId(), app.getProposedDates());
         return app;
     }
+    
 }

@@ -29,7 +29,7 @@ public class Main extends Application {
             Parent root = loader.load();
 
             stage.setTitle("Create Appointment");
-            stage.setScene(new Scene(root, 900, 700)); // Increased size for better view
+            stage.setScene(new Scene(root, 1100, 700)); // Increased size for better view
             stage.show();
         } catch (Exception e) {
             System.err.println("CRASH DURING STARTUP:");

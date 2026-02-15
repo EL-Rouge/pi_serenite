@@ -1,4 +1,4 @@
-package controller;
+package Controllers.Appointment;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="Controllers.UpdateConsultationController"
+           stylesheets="@../../css/styles.css"
+           styleClass="content-pane">
+
+    <VBox fx:id="mainContainer" spacing="25" alignment="TOP_CENTER" maxWidth="800">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Update Consultation" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Cancel" styleClass="btn, btn-danger" onAction="#handleCancel"/>
+            <Button text="Update" styleClass="btn, btn-success" onAction="#handleUpdate"/>
+        </HBox>
+
+        <!-- Form Card -->
+        <VBox spacing="20" styleClass="card" maxWidth="800">
+
+            <VBox spacing="5">
+                <Label text="Consultation ID" styleClass="sub-label"/>
+                <TextField fx:id="consultationIdField" editable="false"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Appointment ID" styleClass="sub-label"/>
+                <TextField fx:id="appointmentIdField" editable="false"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Consultation Date" styleClass="sub-label"/>
+                <DatePicker fx:id="consultationDatePicker"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Diagnosis" styleClass="sub-label"/>
+                <TextArea fx:id="diagnosisField" prefRowCount="3"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Prescription" styleClass="sub-label"/>
+                <TextArea fx:id="prescriptionField" prefRowCount="3"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Notes" styleClass="sub-label"/>
+                <TextArea fx:id="notesField" prefRowCount="3"/>
+            </VBox>
+
+        </VBox>
+    </VBox>
+</StackPane>

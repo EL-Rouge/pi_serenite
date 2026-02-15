@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.Region?>
 
-<VBox fx:controller="controller.SidebarController"
+<VBox fx:controller="Controllers.SidebarController"
       styleClass="sidebar"
       stylesheets="@../../css/styles.css"
       spacing="4"

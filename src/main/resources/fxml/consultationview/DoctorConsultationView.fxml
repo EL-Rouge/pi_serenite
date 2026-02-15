@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="controller.DoctorConsultationsController"
+<BorderPane fx:controller="Controllers.DoctorConsultationsController"
             stylesheets="@../../css/styles.css"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1">
@@ -65,61 +65,7 @@
                     <VBox fx:id="cardsContainer" spacing="16"
                           style="-fx-background-color: transparent;">
 
-                        <!-- ══════════════════════════════════════
-                             MOCK CARD — design preview
-                             ══════════════════════════════════════ -->
-                        <HBox styleClass="doc-appt-card" spacing="0" alignment="CENTER_LEFT">
 
-                            <!-- Left colour strip -->
-                            <VBox styleClass="doc-card-strip" prefWidth="6" minHeight="140"/>
-
-                            <!-- Client avatar circle -->
-                            <StackPane styleClass="client-avatar" style="-fx-margin: 0 0 0 20;">
-                                <Label text="JS" styleClass="client-avatar-text"/>
-                            </StackPane>
-
-                            <!-- Info -->
-                            <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 18 16 18 16;">
-
-                                <!-- Name + badges -->
-                                <HBox spacing="10" alignment="CENTER_LEFT">
-                                    <Label text="John Smith" styleClass="client-name"/>
-                                    <Label text="CONFIRMED"  styleClass="status-badge, status-confirmed"/>
-                                    <Label text="ONLINE"     styleClass="type-badge"/>
-                                </HBox>
-
-                                <!-- Confirmed date -->
-                                <HBox spacing="8" alignment="CENTER_LEFT" styleClass="confirmed-date-box">
-                                    <Label text="📅" style="-fx-font-size: 12;"/>
-                                    <Label text="Confirmed for: 20 Feb 2024  at  09:00"
-                                           styleClass="confirmed-date-label"/>
-                                </HBox>
-
-                                <!-- Client meta row -->
-                                <HBox spacing="20" alignment="CENTER_LEFT">
-                                    <HBox spacing="5" alignment="CENTER_LEFT">
-                                        <Label text="👤" style="-fx-font-size: 11;"/>
-                                        <Label text="Client #42" styleClass="meta-label"/>
-                                    </HBox>
-                                    <HBox spacing="5" alignment="CENTER_LEFT">
-                                        <Label text="🆔" style="-fx-font-size: 11;"/>
-                                        <Label text="Appt #7" styleClass="meta-label"/>
-                                    </HBox>
-                                    <HBox spacing="5" alignment="CENTER_LEFT">
-                                        <Label text="🗓" style="-fx-font-size: 11;"/>
-                                        <Label text="Created 15 Feb 2024" styleClass="meta-label"/>
-                                    </HBox>
-                                </HBox>
-                            </VBox>
-
-                            <!-- Action -->
-                            <VBox alignment="CENTER" style="-fx-padding: 0 24 0 0;">
-                                <Button text="+ Consultation"
-                                        styleClass="btn, btn-accent"
-                                        style="-fx-min-width: 140; -fx-font-size: 13px;"/>
-                            </VBox>
-                        </HBox>
-                        <!-- END MOCK CARD -->
 
                         <!-- Empty state -->
                         <VBox fx:id="emptyState" alignment="CENTER" spacing="12"
