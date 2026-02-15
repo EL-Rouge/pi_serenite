@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:controller="controller.CreateAppointmentController"
+            stylesheets="@../../css/styles.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Include Navbar -->
+    <top>
+        <fx:include source="../Navbar.fxml"/>
+    </top>
+
+    <!-- Include Sidebar -->
+    <left>
+        <fx:include source="../Sidebar.fxml"/>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane styleClass="content-pane">
+            <VBox fx:id="mainContainer" alignment="CENTER" spacing="25">
+                <padding>
+                    <Insets bottom="40" left="40" right="40" top="40"/>
+                </padding>
+
+                <!-- Header with Title and Buttons -->
+                <HBox alignment="CENTER_LEFT" maxWidth="900" spacing="20">
+                    <Label styleClass="page-title" text="Book an Appointment"/>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <Button onAction="#handleCancel" styleClass="btn, btn-danger" text="Cancel"/>
+
+                    <Button onAction="#handleSave" styleClass="btn, btn-success" text="Save Appointment"/>
+                </HBox>
+
+                <!-- Main Card Container -->
+                <VBox alignment="CENTER_LEFT" maxWidth="900" spacing="30" styleClass="card">
+
+                    <!-- Dynamic Doctor Greeting -->
+                    <Label fx:id="doctorNameLabel" styleClass="doctor-greeting" text="Welcome to Dr. {doctor_name}"/>
+
+                    <Region prefHeight="10"/>
+
+                    <!-- Date Selection Section -->
+                    <VBox spacing="15">
+                        <Label styleClass="section-title" text="Propose Up to 3 Dates"/>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="30">
+                            <!-- DatePicker 1 + Time -->
+                            <VBox spacing="8">
+                                <Label styleClass="sub-label" text="OPTION 1"/>
+                                <VBox spacing="5">
+                                    <DatePicker fx:id="datePicker1" promptText="Select Date" styleClass="date-picker"/>
+                                    <Button fx:id="timeBtn1" text="Select Time" styleClass="time-select-btn" onAction="#handleTimeSelect" maxWidth="Infinity"/>
+                                </VBox>
+                            </VBox>
+
+                            <!-- DatePicker 2 + Time -->
+                            <VBox spacing="8">
+                                <Label styleClass="sub-label" text="OPTION 2"/>
+                                <VBox spacing="5">
+                                    <DatePicker fx:id="datePicker2" promptText="Select Date" styleClass="date-picker"/>
+                                    <Button fx:id="timeBtn2" text="Select Time" styleClass="time-select-btn" onAction="#handleTimeSelect" maxWidth="Infinity"/>
+                                </VBox>
+                            </VBox>
+
+                            <!-- DatePicker 3 + Time -->
+                            <VBox spacing="8">
+                                <Label styleClass="sub-label" text="OPTION 3"/>
+                                <VBox spacing="5">
+                                    <DatePicker fx:id="datePicker3" promptText="Select Date" styleClass="date-picker"/>
+                                    <Button fx:id="timeBtn3" text="Select Time" styleClass="time-select-btn" onAction="#handleTimeSelect" maxWidth="Infinity"/>
+                                </VBox>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <Region prefHeight="10"/>
+
+                    <!-- Appointment Type Section -->
+                    <VBox spacing="15">
+                        <Label styleClass="section-title" text="Appointment Type"/>
+                        <HBox spacing="30">
+                            <Button fx:id="onlineButton" onAction="#handleOnlineType" 
+                                    styleClass="btn, appointment-type-btn, btn-primary" text="Online Consultation"/>
+
+                            <Button fx:id="offlineButton" onAction="#handleOfflineType" 
+                                    styleClass="btn, appointment-type-btn, btn-secondary" text="In-Person Visit"/>
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

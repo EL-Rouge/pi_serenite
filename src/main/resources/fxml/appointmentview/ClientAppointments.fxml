@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:controller="controller.ClientAppointmentsController"
+            stylesheets="@../../css/styles.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Include Navbar -->
+    <top>
+        <fx:include source="../Navbar.fxml"/>
+    </top>
+
+    <!-- Include Sidebar -->
+    <left>
+        <fx:include source="../Sidebar.fxml"/>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane styleClass="content-pane">
+            <VBox spacing="25" alignment="TOP_CENTER" maxWidth="1000">
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40"/>
+                </padding>
+
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="page-title" text="My Appointments"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="+ New Appointment" styleClass="btn, btn-primary" onAction="#handleNewAppointment"/>
+                </HBox>
+
+                <!-- Filter Bar -->
+                <HBox spacing="15" alignment="CENTER_LEFT" styleClass="card" style="-fx-padding: 15;">
+                    <TextField fx:id="searchField" promptText="Search by Doctor..." styleClass="search-field" prefWidth="250"/>
+                    <ComboBox fx:id="filterStatus" promptText="Status" prefWidth="120"/>
+                    <ComboBox fx:id="filterType" promptText="Type" prefWidth="120"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Clear Filters" styleClass="btn, btn-secondary" onAction="#handleClearFilters"/>
+                </HBox>
+
+                <!-- Appointments List -->
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <VBox fx:id="appointmentsContainer" spacing="20" style="-fx-background-color: transparent;">
+
+                        <!-- MOCK CARD (For Design Preview) -->
+                        <HBox styleClass="card" spacing="20" alignment="CENTER_LEFT">
+                            <!-- Left: Info -->
+                            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                <HBox spacing="15" alignment="CENTER_LEFT">
+                                    <Label text="Dr. Strange" styleClass="doctor-name-large"/>
+                                    <Label text="PENDING" styleClass="status-badge, status-pending"/>
+                                    <Label text="ONLINE" styleClass="type-badge"/>
+                                </HBox>
+                                <Label text="Created on: 2024-02-15" styleClass="date-label"/>
+
+                                <VBox spacing="4" style="-fx-padding: 10 0 0 0;">
+                                    <Label text="Proposed Dates:" styleClass="sub-label"/>
+                                    <Label text="• 2024-02-20 at 09:00" styleClass="date-item"/>
+                                    <Label text="• 2024-02-21 at 14:00" styleClass="date-item"/>
+                                </VBox>
+                            </VBox>
+
+                            <!-- Right: Actions -->
+                            <VBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="Edit" styleClass="btn, btn-secondary" style="-fx-min-width: 80;"/>
+                                <Button text="Delete" styleClass="btn, btn-danger" style="-fx-min-width: 80;"/>
+                            </VBox>
+                        </HBox>
+
+                    </VBox>
+                </ScrollPane>
+
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

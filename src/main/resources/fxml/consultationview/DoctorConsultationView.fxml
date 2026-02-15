@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:controller="controller.DoctorConsultationsController"
+            stylesheets="@../../css/styles.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <top><fx:include source="../Navbar.fxml"/></top>
+    <left><fx:include source="../Sidebar.fxml"/></left>
+
+    <center>
+        <StackPane styleClass="content-pane">
+            <VBox spacing="24" alignment="TOP_CENTER" maxWidth="1050">
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40"/>
+                </padding>
+
+                <!-- ── Header ── -->
+                <HBox alignment="CENTER_LEFT" spacing="16">
+                    <VBox spacing="4">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="🩺" style="-fx-font-size: 28;"/>
+                            <Label text="My Consultations" styleClass="page-title"/>
+                        </HBox>
+                        <Label fx:id="subtitleLabel"
+                               text="Confirmed appointments awaiting consultation"
+                               styleClass="page-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <!-- Stats pill -->
+                    <VBox styleClass="stats-pill" alignment="CENTER" spacing="2">
+                        <Label fx:id="statsCount" text="—" styleClass="stats-count"/>
+                        <Label text="pending" styleClass="stats-label"/>
+                    </VBox>
+                </HBox>
+
+                <!-- ── Search bar ── -->
+                <HBox spacing="12" alignment="CENTER_LEFT"
+                      styleClass="card" style="-fx-padding: 14 18 14 18;">
+                    <TextField fx:id="searchField"
+                               promptText="🔍  Search by client name or appointment type…"
+                               styleClass="search-field"
+                               prefWidth="340"
+                               onKeyReleased="#handleSearch"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Clear" styleClass="btn, btn-secondary" onAction="#handleClear"/>
+                </HBox>
+
+                <!-- ── Cards list ── -->
+                <ScrollPane fitToWidth="true"
+                            VBox.vgrow="ALWAYS"
+                            style="-fx-background-color: transparent; -fx-background: transparent;">
+
+                    <VBox fx:id="cardsContainer" spacing="16"
+                          style="-fx-background-color: transparent;">
+
+                        <!-- ══════════════════════════════════════
+                             MOCK CARD — design preview
+                             ══════════════════════════════════════ -->
+                        <HBox styleClass="doc-appt-card" spacing="0" alignment="CENTER_LEFT">
+
+                            <!-- Left colour strip -->
+                            <VBox styleClass="doc-card-strip" prefWidth="6" minHeight="140"/>
+
+                            <!-- Client avatar circle -->
+                            <StackPane styleClass="client-avatar" style="-fx-margin: 0 0 0 20;">
+                                <Label text="JS" styleClass="client-avatar-text"/>
+                            </StackPane>
+
+                            <!-- Info -->
+                            <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 18 16 18 16;">
+
+                                <!-- Name + badges -->
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <Label text="John Smith" styleClass="client-name"/>
+                                    <Label text="CONFIRMED"  styleClass="status-badge, status-confirmed"/>
+                                    <Label text="ONLINE"     styleClass="type-badge"/>
+                                </HBox>
+
+                                <!-- Confirmed date -->
+                                <HBox spacing="8" alignment="CENTER_LEFT" styleClass="confirmed-date-box">
+                                    <Label text="📅" style="-fx-font-size: 12;"/>
+                                    <Label text="Confirmed for: 20 Feb 2024  at  09:00"
+                                           styleClass="confirmed-date-label"/>
+                                </HBox>
+
+                                <!-- Client meta row -->
+                                <HBox spacing="20" alignment="CENTER_LEFT">
+                                    <HBox spacing="5" alignment="CENTER_LEFT">
+                                        <Label text="👤" style="-fx-font-size: 11;"/>
+                                        <Label text="Client #42" styleClass="meta-label"/>
+                                    </HBox>
+                                    <HBox spacing="5" alignment="CENTER_LEFT">
+                                        <Label text="🆔" style="-fx-font-size: 11;"/>
+                                        <Label text="Appt #7" styleClass="meta-label"/>
+                                    </HBox>
+                                    <HBox spacing="5" alignment="CENTER_LEFT">
+                                        <Label text="🗓" style="-fx-font-size: 11;"/>
+                                        <Label text="Created 15 Feb 2024" styleClass="meta-label"/>
+                                    </HBox>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Action -->
+                            <VBox alignment="CENTER" style="-fx-padding: 0 24 0 0;">
+                                <Button text="+ Consultation"
+                                        styleClass="btn, btn-accent"
+                                        style="-fx-min-width: 140; -fx-font-size: 13px;"/>
+                            </VBox>
+                        </HBox>
+                        <!-- END MOCK CARD -->
+
+                        <!-- Empty state -->
+                        <VBox fx:id="emptyState" alignment="CENTER" spacing="12"
+                              style="-fx-padding: 80 0 80 0;"
+                              visible="false" managed="false">
+                            <Label text="✅" style="-fx-font-size: 52;"/>
+                            <Label text="All caught up!" styleClass="doctor-name-large"/>
+                            <Label text="No confirmed appointments awaiting a consultation."
+                                   styleClass="date-label"/>
+                        </VBox>
+
+                    </VBox>
+                </ScrollPane>
+
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

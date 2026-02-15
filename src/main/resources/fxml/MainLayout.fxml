@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+
+            stylesheets="@../css/styles.css">
+
+    <!-- ==================== NAVBAR (TOP) ==================== -->
+    <top>
+        <fx:include source="Navbar.fxml"/>
+    </top>
+
+    <!-- ==================== SIDEBAR (LEFT) ==================== -->
+    <left>
+        <fx:include source="Sidebar.fxml"/>
+    </left>
+
+    <!-- ==================== CONTENT AREA (CENTER) ==================== -->
+    <center>
+        <StackPane styleClass="content-pane" fx:id="contentPane" minWidth="800" minHeight="600"/>
+    </center>
+
+</BorderPane>

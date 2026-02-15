@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:controller="controller.AddConsultationDoctorController"
+      stylesheets="@../../css/styles.css"
+      styleClass="dialog-root"
+      spacing="0"
+      prefWidth="580"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- ══ Header ════════════════════════════════════════════════ -->
+    <HBox styleClass="dialog-header" alignment="CENTER_LEFT" spacing="14">
+        <Label text="🩺" style="-fx-font-size: 26;"/>
+        <VBox spacing="3">
+            <Label text="New Consultation" styleClass="dialog-title"/>
+            <Label fx:id="appointmentRefLabel"
+                   text="Loading…"
+                   styleClass="dialog-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✕" styleClass="btn-icon-close" onAction="#handleClose"/>
+    </HBox>
+
+    <!-- ══ Auto-filled info banner ═══════════════════════════════ -->
+    <HBox styleClass="info-banner" spacing="30" alignment="CENTER_LEFT">
+
+        <VBox spacing="3" alignment="CENTER_LEFT">
+            <Label text="DOCTOR" styleClass="info-banner-label"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="👨‍⚕️" style="-fx-font-size: 13;"/>
+                <Label fx:id="doctorIdDisplay" text="Dr. #—" styleClass="info-banner-value"/>
+            </HBox>
+        </VBox>
+
+        <Separator orientation="VERTICAL" styleClass="banner-sep"/>
+
+        <VBox spacing="3" alignment="CENTER_LEFT">
+            <Label text="CLIENT" styleClass="info-banner-label"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="👤" style="-fx-font-size: 13;"/>
+                <Label fx:id="clientIdDisplay" text="Client #—" styleClass="info-banner-value"/>
+            </HBox>
+        </VBox>
+
+        <Separator orientation="VERTICAL" styleClass="banner-sep"/>
+
+        <VBox spacing="3" alignment="CENTER_LEFT">
+            <Label text="APPOINTMENT" styleClass="info-banner-label"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="🆔" style="-fx-font-size: 13;"/>
+                <Label fx:id="apptIdDisplay" text="Appt #—" styleClass="info-banner-value"/>
+            </HBox>
+        </VBox>
+
+    </HBox>
+
+    <!-- ══ Form body ═════════════════════════════════════════════ -->
+    <VBox spacing="18" style="-fx-padding: 24 28 10 28;">
+
+        <!-- Section: When -->
+        <Label text="WHEN" styleClass="form-section-label"/>
+
+        <GridPane hgap="16" vgap="12">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Consultation Date *" styleClass="form-label"/>
+                <DatePicker fx:id="consultationDate"
+                            styleClass="form-input"
+                            maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Time *" styleClass="form-label"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Spinner fx:id="hourSpinner"   min="0" max="23" initialValue="9"
+                             styleClass="time-spinner" prefWidth="76" editable="true"/>
+                    <Label text=":" styleClass="time-sep"/>
+                    <Spinner fx:id="minuteSpinner" min="0" max="59" initialValue="0"
+                             styleClass="time-spinner" prefWidth="76" editable="true"/>
+                </HBox>
+            </VBox>
+        </GridPane>
+
+        <Separator styleClass="form-divider"/>
+
+        <!-- Section: Clinical -->
+        <Label text="CLINICAL DETAILS" styleClass="form-section-label"/>
+
+        <!-- Diagnosis -->
+        <VBox spacing="5">
+            <Label text="Diagnosis *" styleClass="form-label"/>
+            <TextField fx:id="diagnosisField"
+                       promptText="e.g. Hypertension stage 1, Seasonal allergies…"
+                       styleClass="form-input"/>
+        </VBox>
+
+        <!-- Prescription + Notes side by side -->
+        <GridPane hgap="16" vgap="0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0">
+                <Label text="Prescription" styleClass="form-label"/>
+                <TextArea fx:id="prescriptionArea"
+                          promptText="Medications, dosage, duration…"
+                          styleClass="form-textarea"
+                          prefRowCount="4"
+                          wrapText="true"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="1">
+                <Label text="Clinical Notes" styleClass="form-label"/>
+                <TextArea fx:id="notesArea"
+                          promptText="Observations, follow-up, lifestyle advice…"
+                          styleClass="form-textarea"
+                          prefRowCount="4"
+                          wrapText="true"/>
+            </VBox>
+        </GridPane>
+
+        <!-- Error message -->
+        <Label fx:id="errorLabel"
+               styleClass="form-error"
+               wrapText="true"
+               visible="false"
+               managed="false"/>
+
+    </VBox>
+
+    <!-- ══ Footer ════════════════════════════════════════════════ -->
+    <HBox styleClass="dialog-footer" spacing="12" alignment="CENTER_RIGHT">
+        <Button text="Cancel"
+                styleClass="btn, btn-secondary"
+                style="-fx-min-width: 100;"
+                onAction="#handleClose"/>
+        <Button text="💾  Save Consultation"
+                styleClass="btn, btn-accent"
+                style="-fx-min-width: 175;"
+                onAction="#handleSave"/>
+    </HBox>
+
+</VBox>

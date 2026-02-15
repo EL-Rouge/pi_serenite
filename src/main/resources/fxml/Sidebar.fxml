@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox fx:controller="controller.SidebarController"
+      styleClass="sidebar"
+      stylesheets="@../../css/styles.css"
+      spacing="4"
+      prefWidth="220"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <padding>
+        <Insets top="24" right="12" bottom="24" left="12"/>
+    </padding>
+
+    <!-- App logo / brand -->
+    <VBox spacing="2" style="-fx-padding: 0 0 20 8;">
+        <Label text="MediCare" styleClass="sidebar-brand"/>
+        <Label text="Medical Platform" styleClass="sidebar-brand-sub"/>
+    </VBox>
+
+    <Separator styleClass="sidebar-separator"/>
+    <Label text="MAIN" styleClass="sidebar-section-label" style="-fx-padding: 12 0 4 8;"/>
+
+    <!-- Dashboard -->
+    <Button fx:id="btnDashboard"
+            text="🏠  Dashboard"
+            styleClass="sidebar-btn"
+            maxWidth="Infinity"
+            onAction="#handleDashboard"/>
+
+    <!-- Appointments -->
+    <Button fx:id="btnAppointments"
+            text="📅  Appointments"
+            styleClass="sidebar-btn"
+            maxWidth="Infinity"
+            onAction="#handleAppointments"/>
+
+    <!-- ── NEW: Consultations ── -->
+    <Button fx:id="btnConsultations"
+            text="🩺  Consultations"
+            styleClass="sidebar-btn"
+            maxWidth="Infinity"
+            onAction="#handleConsultations"/>
+
+    <Separator styleClass="sidebar-separator" style="-fx-padding: 8 0 8 0;"/>
+    <Label text="ACCOUNT" styleClass="sidebar-section-label" style="-fx-padding: 4 0 4 8;"/>
+
+    <!-- Profile -->
+    <Button fx:id="btnProfile"
+            text="👤  Profile"
+            styleClass="sidebar-btn"
+            maxWidth="Infinity"
+            onAction="#handleProfile"/>
+
+    <!-- Settings -->
+    <Button fx:id="btnSettings"
+            text="⚙️  Settings"
+            styleClass="sidebar-btn"
+            maxWidth="Infinity"
+            onAction="#handleSettings"/>
+
+    <!-- Spacer pushes logout to bottom -->
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <Separator styleClass="sidebar-separator"/>
+
+    <!-- Logout -->
+    <Button fx:id="btnLogout"
+            text="🚪  Logout"
+            styleClass="sidebar-btn, sidebar-btn-logout"
+            maxWidth="Infinity"
+            onAction="#handleLogout"/>
+
+</VBox>
