@@ -9,7 +9,7 @@
 
 <VBox fx:controller="Controllers.SidebarController"
       styleClass="sidebar"
-      stylesheets="@../../css/styles.css"
+      stylesheets="@../css/sidebar.css"
       spacing="4"
       prefWidth="220"
       xmlns="http://javafx.com/javafx/21"

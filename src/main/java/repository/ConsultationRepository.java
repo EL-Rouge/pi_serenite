@@ -88,14 +88,34 @@ public class ConsultationRepository {
         return list;
     }
 
+    public List<Consultation> findByDoctorId(long doctorId) throws SQLException {
+        List<Consultation> list = new ArrayList<>();
+        String sql = """
+            SELECT * FROM Consultation
+            WHERE doctorId = ?
+            ORDER BY consultationDate DESC
+            """;
+
+        Connection conn = getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, doctorId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapRow(rs));
+                }
+            }
+        }
+        return list;
+    }
+
     // ─── UPDATE ─────────────────────────────────────
 
     public void update(Consultation consultation) throws SQLException {
         String sql = """
-                UPDATE Consultation SET
-                notes = ?, diagnosis = ?, prescription = ?, consultationDate = ?
-                WHERE id = ?
-                """;
+            UPDATE Consultation SET
+            notes = ?, diagnosis = ?, prescription = ?, consultationDate = ?
+            WHERE id = ?
+            """;
 
         Connection conn = getConnection();
 
@@ -109,6 +129,8 @@ public class ConsultationRepository {
         }
     }
 
+    // ─── DELETE ─────────────────────────────────────
+
     public void delete(long id) throws SQLException {
         String sql = "DELETE FROM Consultation WHERE id = ?";
         Connection conn = getConnection();
@@ -118,6 +140,8 @@ public class ConsultationRepository {
             pstmt.executeUpdate();
         }
     }
+
+    // ─── MAPPING ─────────────────────────────────────
 
     private Consultation mapRow(ResultSet rs) throws SQLException {
         Consultation c = new Consultation();

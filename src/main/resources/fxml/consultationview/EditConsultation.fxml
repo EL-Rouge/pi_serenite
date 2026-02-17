@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:controller="Controllers.Consultation.EditConsultationController"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@../../css/consultation.css"
+      styleClass="dialog-root"
+      spacing="0"
+      prefWidth="560">
+
+    <!-- ── Header strip ── -->
+    <VBox styleClass="dialog-header" spacing="6">
+        <padding><Insets top="28" right="32" bottom="24" left="32"/></padding>
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="✏️" style="-fx-font-size: 22;"/>
+            <Label text="Edit Consultation" styleClass="dialog-title"/>
+        </HBox>
+        <Label fx:id="headerSubtitle" text="Consultation #—  ·  Loading…"
+               styleClass="dialog-subtitle"/>
+    </VBox>
+
+    <!-- ── Meta chips ── -->
+    <HBox styleClass="meta-strip" spacing="0">
+        <VBox styleClass="meta-chip" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Label text="CONSULTATION"    styleClass="meta-chip-label"/>
+            <Label fx:id="metaConsultId" text="—" styleClass="meta-chip-value"/>
+        </VBox>
+        <VBox styleClass="meta-chip meta-chip-mid" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Label text="APPOINTMENT"  styleClass="meta-chip-label"/>
+            <Label fx:id="metaApptId" text="—" styleClass="meta-chip-value"/>
+        </VBox>
+        <VBox styleClass="meta-chip" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Label text="ORIGINAL DATE" styleClass="meta-chip-label"/>
+            <Label fx:id="metaDate"    text="—" styleClass="meta-chip-value"/>
+        </VBox>
+    </HBox>
+
+    <!-- ── Form body ── -->
+    <VBox styleClass="dialog-body" spacing="20">
+        <padding><Insets top="28" right="32" bottom="28" left="32"/></padding>
+
+        <!-- Consultation Date -->
+        <VBox spacing="6">
+            <Label text="Consultation Date" styleClass="field-label"/>
+            <DatePicker fx:id="consultationDatePicker"
+                        styleClass="field-date-picker"
+                        maxWidth="Infinity"/>
+        </VBox>
+
+        <!-- Clinical Notes -->
+        <VBox spacing="6">
+            <Label text="Clinical Notes" styleClass="field-label"/>
+            <TextArea fx:id="notesArea"
+                      promptText="Observations, symptoms, patient history…"
+                      styleClass="field-textarea"
+                      prefRowCount="3"
+                      wrapText="true"/>
+        </VBox>
+
+        <!-- Diagnosis -->
+        <VBox spacing="6">
+            <Label text="Diagnosis *" styleClass="field-label"/>
+            <TextArea fx:id="diagnosisArea"
+                      promptText="Primary diagnosis and supporting findings…"
+                      styleClass="field-textarea"
+                      prefRowCount="3"
+                      wrapText="true"/>
+        </VBox>
+
+        <!-- Prescription -->
+        <VBox spacing="6">
+            <Label text="Prescription" styleClass="field-label"/>
+            <TextArea fx:id="prescriptionArea"
+                      promptText="Medications, dosage, duration, instructions…"
+                      styleClass="field-textarea"
+                      prefRowCount="3"
+                      wrapText="true"/>
+        </VBox>
+
+        <!-- Error label -->
+        <Label fx:id="errorLabel" styleClass="error-label"
+               visible="false" managed="false" wrapText="true"/>
+    </VBox>
+
+    <!-- ── Footer actions ── -->
+    <HBox styleClass="dialog-footer" spacing="12" alignment="CENTER_RIGHT">
+        <padding><Insets top="18" right="32" bottom="22" left="32"/></padding>
+        <Button text="Cancel"              styleClass="btn-cancel"
+                onAction="#handleCancel"   minWidth="100"/>
+        <Button text="Save Changes"        styleClass="btn-save"
+                onAction="#handleSave"     minWidth="160"/>
+    </HBox>
+
+</VBox>

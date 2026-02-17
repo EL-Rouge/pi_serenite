@@ -18,13 +18,13 @@ public class SidebarController {
     // ── Navigation helpers ───────────────────────────────────────
 
     @FXML private void handleDashboard()     { navigateTo("/view/Dashboard.fxml"); }
-    @FXML private void handleAppointments()  { navigateTo("/view/client/ClientAppointments.fxml"); }
+    @FXML private void handleAppointments()  { navigateTo("/fxml/appointmentview/ClientAppointments.fxml"); }
     @FXML private void handleConsultations() {
         navigateTo("/fxml/consultationview/DoctorConsultationView.fxml");
     }
 
     @FXML private void handleProfile()  { navigateTo("/view/Profile.fxml"); }
-    @FXML private void handleSettings() { navigateTo("/view/Settings.fxml"); }
+    @FXML private void handleSettings() { navigateTo("/fxml/consultationview/ConsultationListView.fxml"); }
 
     @FXML
     private void handleLogout() {

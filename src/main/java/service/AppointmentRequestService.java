@@ -92,5 +92,16 @@ public class AppointmentRequestService {
         repository.saveProposedDates(app.getId(), app.getProposedDates());
         return app;
     }
+
+
+    /**
+     * Flips the status of an appointment.
+     * Called by ConsultationService after a consultation is saved (CONFIRMED → CONSULTED).
+     */
+    public void updateStatus(long id, String newStatus) throws SQLException {
+        AppointmentRequest app = getById(id);
+        app.setStatus(newStatus);
+        repository.update(app);
+    }
     
 }

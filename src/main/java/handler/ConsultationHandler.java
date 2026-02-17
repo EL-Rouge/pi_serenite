@@ -25,11 +25,11 @@ public class ConsultationHandler implements HttpHandler {
 
         try {
             switch (method) {
-                case "GET" -> handleGet(exchange, path);
-                case "POST" -> handlePost(exchange);
-                case "PUT" -> handlePut(exchange, path);
+                case "GET"    -> handleGet(exchange, path);
+                case "POST"   -> handlePost(exchange);
+                case "PUT"    -> handlePut(exchange, path);
                 case "DELETE" -> handleDelete(exchange, path);
-                default -> send(exchange, 405, "{\"error\":\"Method not allowed\"}");
+                default       -> send(exchange, 405, "{\"error\":\"Method not allowed\"}");
             }
         } catch (SQLException e) {
             send(exchange, 500, "{\"error\":\"Database error: " + e.getMessage() + "\"}");
@@ -39,7 +39,7 @@ public class ConsultationHandler implements HttpHandler {
     }
 
     private void handleGet(HttpExchange ex, String path) throws Exception {
-        send(ex, 200, mapper.writeValueAsString(service.getAll()));
+        send(ex, 200, mapper.writeValueAsString(service.getAllConsultations()));
     }
 
     private void handlePost(HttpExchange ex) throws Exception {

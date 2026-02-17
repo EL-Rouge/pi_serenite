@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════════════════════════════════
+   MediCare – Sidebar Stylesheet
+   File: src/main/resources/css/sidebar.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   SIDEBAR CONTAINER
+   ───────────────────────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: #171b26;
+    -fx-border-color: transparent #252d42 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-pref-width: 220px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BRAND / LOGO AREA
+   ───────────────────────────────────────────────────────────── */
+.sidebar-brand {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf2;
+    -fx-font-family: "Segoe UI Semibold", "SF Pro Display", sans-serif;
+}
+
+.sidebar-brand-sub {
+    -fx-font-size: 10px;
+    -fx-text-fill: #55607a;
+    -fx-font-style: italic;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECTION LABELS  (MAIN, ACCOUNT)
+   ───────────────────────────────────────────────────────────── */
+.sidebar-section-label {
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #55607a;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   NAV BUTTONS
+   ───────────────────────────────────────────────────────────── */
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8a92a8;
+    -fx-font-size: 13px;
+    -fx-padding: 10 14 10 14;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.sidebar-btn:hover {
+    -fx-background-color: #252d42;
+    -fx-text-fill: #e8eaf2;
+}
+
+.sidebar-btn:focused {
+    -fx-background-color: #252d42;
+    -fx-text-fill: #e8eaf2;
+}
+
+/* Active / selected nav item */
+.sidebar-btn-active {
+    -fx-background-color: #1d3461;
+    -fx-text-fill: #4f8ef7;
+    -fx-font-weight: bold;
+}
+
+.sidebar-btn-active:hover {
+    -fx-background-color: #1d3461;
+    -fx-text-fill: #4f8ef7;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LOGOUT BUTTON
+   ───────────────────────────────────────────────────────────── */
+.sidebar-btn-logout {
+    -fx-text-fill: #f76b6b;
+}
+
+.sidebar-btn-logout:hover {
+    -fx-background-color: #2e1a1a;
+    -fx-text-fill: #f76b6b;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SEPARATOR
+   ───────────────────────────────────────────────────────────── */
+.sidebar-separator .line {
+    -fx-border-color: #252d42;
+    -fx-border-width: 1;
+}

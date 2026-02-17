@@ -1,0 +1,32 @@
+/* ── Consulted status badge ── */
+.status-consulted {
+    -fx-background-color: #d1fae5;
+    -fx-text-fill: #065f46;
+    -fx-border-color: #6ee7b7;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+/* ── Green strip for consulted cards ── */
+.strip-consulted {
+    -fx-background-color: #10b981;
+}
+
+/* ── Danger button for delete ── */
+.btn-danger {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #b91c1c;
+    -fx-border-color: #fca5a5;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+.btn-danger:hover {
+    -fx-background-color: #fecaca;
+}

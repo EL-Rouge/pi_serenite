@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="Controllers.DoctorConsultationsController"
-            stylesheets="@../../css/doctorconsultation.css"
+<BorderPane fx:controller="Controllers.Consultation.ConsultationListController"
+            stylesheets="@../../css/styles.css"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1">
 
@@ -30,18 +30,18 @@
                 <HBox alignment="CENTER_LEFT" spacing="16">
                     <VBox spacing="4">
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="🩺" style="-fx-font-size: 28;"/>
-                            <Label text="My Consultations" styleClass="page-title"/>
+                            <Label text="📋" style="-fx-font-size: 28;"/>
+                            <Label text="Consultation Records" styleClass="page-title"/>
                         </HBox>
                         <Label fx:id="subtitleLabel"
-                               text="Confirmed appointments awaiting consultation"
+                               text="All consultations recorded by you"
                                styleClass="page-subtitle"/>
                     </VBox>
                     <Region HBox.hgrow="ALWAYS"/>
                     <!-- Stats pill -->
                     <VBox styleClass="stats-pill" alignment="CENTER" spacing="2">
                         <Label fx:id="statsCount" text="—" styleClass="stats-count"/>
-                        <Label text="pending" styleClass="stats-label"/>
+                        <Label text="total" styleClass="stats-label"/>
                     </VBox>
                 </HBox>
 
@@ -49,7 +49,7 @@
                 <HBox spacing="12" alignment="CENTER_LEFT"
                       styleClass="card" style="-fx-padding: 14 18 14 18;">
                     <TextField fx:id="searchField"
-                               promptText="🔍  Search by client name or appointment type…"
+                               promptText="🔍  Search by diagnosis, notes, or client…"
                                styleClass="search-field"
                                prefWidth="340"
                                onKeyReleased="#handleSearch"/>
@@ -61,19 +61,16 @@
                 <ScrollPane fitToWidth="true"
                             VBox.vgrow="ALWAYS"
                             style="-fx-background-color: transparent; -fx-background: transparent;">
-
                     <VBox fx:id="cardsContainer" spacing="16"
                           style="-fx-background-color: transparent;">
-
-
 
                         <!-- Empty state -->
                         <VBox fx:id="emptyState" alignment="CENTER" spacing="12"
                               style="-fx-padding: 80 0 80 0;"
                               visible="false" managed="false">
-                            <Label text="✅" style="-fx-font-size: 52;"/>
-                            <Label text="All caught up!" styleClass="doctor-name-large"/>
-                            <Label text="No confirmed appointments awaiting a consultation."
+                            <Label text="🗂️" style="-fx-font-size: 52;"/>
+                            <Label text="No consultations yet" styleClass="doctor-name-large"/>
+                            <Label text="Consultations you record will appear here."
                                    styleClass="date-label"/>
                         </VBox>
 
