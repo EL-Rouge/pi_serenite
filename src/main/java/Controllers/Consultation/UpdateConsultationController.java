@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Consultation;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,7 +7,6 @@ import models.Consultation;
 import service.ConsultationService;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 

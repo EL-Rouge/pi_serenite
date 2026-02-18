@@ -230,6 +230,25 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
+   CARD LAYOUT HELPERS  (replaced inline setStyle() calls)
+   ───────────────────────────────────────────────────────────── */
+
+/* infoBox padding — was: infoBox.setStyle("-fx-padding: 18 16 18 16;") */
+.card-info-box {
+    -fx-padding: 18 16 18 16;
+}
+
+/* actionBox padding — was: actionBox.setStyle("-fx-padding: 0 24 0 0;") */
+.card-action-box {
+    -fx-padding: 0 24 0 0;
+}
+
+/* meta icon size — was: i.setStyle("-fx-font-size: 11;") */
+.meta-icon {
+    -fx-font-size: 11px;
+}
+
+/* ─────────────────────────────────────────────────────────────
    EMPTY STATE
    ───────────────────────────────────────────────────────────── */
 .doctor-name-large {

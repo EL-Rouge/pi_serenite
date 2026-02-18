@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane
+        fx:controller="Controllers.Appointment.DoctorDashboardController"
+        stylesheets="@../../css/appointmentcss/doctor-dashboard.css"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        styleClass="root-pane">
+
+    <!-- ══ YOUR EXISTING SIDEBAR ══ -->
+    <left>
+        <fx:include source="../Sidebar.fxml"/>
+    </left>
+
+    <!-- ══ MAIN ══ -->
+    <center>
+        <VBox styleClass="main-area">
+
+            <!-- YOUR EXISTING NAVBAR -->
+            <fx:include source="../Navbar.fxml"/>
+
+            <!-- CONTENT -->
+            <HBox VBox.vgrow="ALWAYS" spacing="20" styleClass="content-area">
+                <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+
+                <!-- LEFT PANEL -->
+                <VBox styleClass="panel-left" spacing="16" prefWidth="420" minWidth="380">
+
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <Label text="Appointments" styleClass="panel-title"/>
+                        <Label fx:id="totalBadge" text="0 total" styleClass="badge"/>
+                    </HBox>
+
+                    <HBox styleClass="filter-tabs" spacing="4">
+                        <padding><Insets top="4" bottom="4" left="4" right="4"/></padding>
+                        <Button fx:id="tabAll"       text="All"       onAction="#filterAll"       styleClass="tab, tab-active"/>
+                        <Button fx:id="tabPending"   text="Pending"   onAction="#filterPending"   styleClass="tab"/>
+                        <Button fx:id="tabConfirmed" text="Confirmed" onAction="#filterConfirmed" styleClass="tab"/>
+                        <Button fx:id="tabRefused"   text="Refused"   onAction="#filterRefused"   styleClass="tab"/>
+                    </HBox>
+
+                    <ScrollPane fx:id="appointmentScroll" VBox.vgrow="ALWAYS"
+                                fitToWidth="true" styleClass="appt-scroll">
+                        <VBox fx:id="appointmentList" spacing="10" styleClass="appt-list">
+                            <padding><Insets top="4" bottom="4" left="4" right="8"/></padding>
+                        </VBox>
+                    </ScrollPane>
+
+                </VBox>
+
+                <!-- RIGHT PANEL -->
+                <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="16" styleClass="panel-right">
+
+                    <!-- Stats -->
+                    <HBox spacing="10" styleClass="stats-row">
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+                            <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <StackPane styleClass="stat-icon, stat-icon-pending"><Label text="⏳"/></StackPane>
+                                <VBox>
+                                    <Label fx:id="countPending"   text="0" styleClass="stat-num, stat-pending"/>
+                                    <Label text="Pending"   styleClass="stat-label"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+                            <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <StackPane styleClass="stat-icon, stat-icon-confirmed"><Label text="✅"/></StackPane>
+                                <VBox>
+                                    <Label fx:id="countConfirmed" text="0" styleClass="stat-num, stat-confirmed"/>
+                                    <Label text="Confirmed" styleClass="stat-label"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+                            <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <StackPane styleClass="stat-icon, stat-icon-refused"><Label text="✕"/></StackPane>
+                                <VBox>
+                                    <Label fx:id="countRefused"   text="0" styleClass="stat-num, stat-refused"/>
+                                    <Label text="Refused"   styleClass="stat-label"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+                            <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <StackPane styleClass="stat-icon, stat-icon-consulted"><Label text="🩺"/></StackPane>
+                                <VBox>
+                                    <Label fx:id="countConsulted" text="0" styleClass="stat-num, stat-consulted"/>
+                                    <Label text="Consulted" styleClass="stat-label"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Calendar -->
+                    <VBox styleClass="calendar-card" spacing="0">
+                        <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+                        <HBox alignment="CENTER_LEFT" styleClass="cal-header">
+                            <Label fx:id="calMonthLabel" text="February 2026" styleClass="cal-month"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <HBox spacing="8">
+                                <Button text="‹" onAction="#prevMonth" styleClass="cal-nav-btn"/>
+                                <Button text="›" onAction="#nextMonth" styleClass="cal-nav-btn"/>
+                            </HBox>
+                        </HBox>
+                        <StackPane>
+                            <GridPane fx:id="calendarGrid" styleClass="cal-grid" hgap="8" vgap="8"
+                                      alignment="CENTER" StackPane.alignment="CENTER">
+                                <padding><Insets top="16"/></padding>
+                            </GridPane>
+                        </StackPane>
+                        <HBox spacing="20" styleClass="cal-legend">
+                            <padding><Insets top="16"/></padding>
+                            <HBox spacing="6" alignment="CENTER_LEFT">
+                                <Circle radius="4" styleClass="legend-dot-confirmed"/>
+                                <Label text="Confirmed appointment" styleClass="legend-text"/>
+                            </HBox>
+                            <HBox spacing="6" alignment="CENTER_LEFT">
+                                <Circle radius="4" styleClass="legend-dot-today"/>
+                                <Label text="Today" styleClass="legend-text"/>
+                            </HBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Day detail -->
+                    <VBox fx:id="detailCard" VBox.vgrow="ALWAYS" styleClass="detail-card" spacing="0">
+                        <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+                        <Label fx:id="detailDateLabel" text="Click a day to see appointments" styleClass="detail-title"/>
+                        <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="detail-scroll">
+                            <VBox fx:id="detailList" spacing="8">
+                                <padding><Insets top="12" right="6"/></padding>
+                            </VBox>
+                        </ScrollPane>
+                    </VBox>
+
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

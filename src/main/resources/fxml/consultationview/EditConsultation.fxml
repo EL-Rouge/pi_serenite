@@ -11,7 +11,7 @@
 <VBox fx:controller="Controllers.Consultation.EditConsultationController"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@../../css/consultation.css"
+      stylesheets="@../../css/consultationcss/consultation.css"
       styleClass="dialog-root"
       spacing="0"
       prefWidth="560">

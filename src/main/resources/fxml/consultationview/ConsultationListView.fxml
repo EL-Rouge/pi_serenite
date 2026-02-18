@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:controller="Controllers.Consultation.ConsultationListController"
-            stylesheets="@../../css/styles.css"
+            stylesheets="@../../css/consultationcss/consultationlist.css"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1">
 
@@ -30,7 +30,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="16">
                     <VBox spacing="4">
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="📋" style="-fx-font-size: 28;"/>
+                            <Label text="📋" styleClass="page-icon"/>
                             <Label text="Consultation Records" styleClass="page-title"/>
                         </HBox>
                         <Label fx:id="subtitleLabel"
@@ -46,32 +46,30 @@
                 </HBox>
 
                 <!-- ── Search bar ── -->
-                <HBox spacing="12" alignment="CENTER_LEFT"
-                      styleClass="card" style="-fx-padding: 14 18 14 18;">
+                <HBox spacing="12" alignment="CENTER_LEFT" styleClass="card search-bar">
                     <TextField fx:id="searchField"
                                promptText="🔍  Search by diagnosis, notes, or client…"
                                styleClass="search-field"
                                prefWidth="340"
                                onKeyReleased="#handleSearch"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Button text="Clear" styleClass="btn, btn-secondary" onAction="#handleClear"/>
+                    <Button text="Clear" styleClass="btn btn-secondary" onAction="#handleClear"/>
                 </HBox>
 
                 <!-- ── Cards list ── -->
                 <ScrollPane fitToWidth="true"
                             VBox.vgrow="ALWAYS"
-                            style="-fx-background-color: transparent; -fx-background: transparent;">
-                    <VBox fx:id="cardsContainer" spacing="16"
-                          style="-fx-background-color: transparent;">
+                            styleClass="scroll-pane">
+                    <VBox fx:id="cardsContainer" spacing="16" styleClass="cards-container">
 
                         <!-- Empty state -->
                         <VBox fx:id="emptyState" alignment="CENTER" spacing="12"
-                              style="-fx-padding: 80 0 80 0;"
+                              styleClass="empty-state-container"
                               visible="false" managed="false">
-                            <Label text="🗂️" style="-fx-font-size: 52;"/>
-                            <Label text="No consultations yet" styleClass="doctor-name-large"/>
+                            <Label text="🗂️" styleClass="empty-state-icon"/>
+                            <Label text="No consultations yet" styleClass="empty-state-title"/>
                             <Label text="Consultations you record will appear here."
-                                   styleClass="date-label"/>
+                                   styleClass="empty-state-subtitle"/>
                         </VBox>
 
                     </VBox>

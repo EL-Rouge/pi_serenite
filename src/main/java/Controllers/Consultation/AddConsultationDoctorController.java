@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Consultation;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;

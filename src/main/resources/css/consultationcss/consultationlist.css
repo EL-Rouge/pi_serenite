@@ -1,0 +1,330 @@
+/* ═══════════════════════════════════════════════════════════════
+   MediCare – Consultation List View Stylesheet
+   File: src/main/resources/css/consultation-list.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   ROOT
+   ───────────────────────────────────────────────────────────── */
+.root {
+    -fx-font-family: "Segoe UI", "SF Pro Display", "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #0f1117;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CONTENT PANE
+   ───────────────────────────────────────────────────────────── */
+.content-pane {
+    -fx-background-color: #0f1117;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PAGE HEADER
+   ───────────────────────────────────────────────────────────── */
+.page-icon {
+    -fx-font-size: 28px;
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf2;
+    -fx-font-family: "Segoe UI Semibold", "SF Pro Display", sans-serif;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8a92a8;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   STATS PILL
+   ───────────────────────────────────────────────────────────── */
+.stats-pill {
+    -fx-background-color: #1e2436;
+    -fx-background-radius: 12;
+    -fx-border-color: #252d42;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-padding: 10 20 10 20;
+    -fx-min-width: 72px;
+}
+
+.stats-count {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4f8ef7;
+    -fx-alignment: CENTER;
+}
+
+.stats-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: #55607a;
+    -fx-alignment: CENTER;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD WRAPPER
+   ───────────────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: #1e2436;
+    -fx-background-radius: 12;
+    -fx-border-color: #252d42;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 8, 0, 0, 2);
+}
+
+/* Search bar specific padding */
+.search-bar {
+    -fx-padding: 14 18 14 18;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SEARCH FIELD
+   ───────────────────────────────────────────────────────────── */
+.search-field {
+    -fx-background-color: #252d42;
+    -fx-background-radius: 8;
+    -fx-border-color: #3a4560;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-text-fill: #e8eaf2;
+    -fx-prompt-text-fill: #55607a;
+    -fx-padding: 8 14 8 14;
+    -fx-font-size: 13px;
+}
+
+.search-field:focused {
+    -fx-border-color: #4f8ef7;
+    -fx-background-color: #1e2436;
+    -fx-effect: dropshadow(gaussian, rgba(79,142,247,0.25), 6, 0, 0, 0);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────────────────────────── */
+.btn {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-secondary {
+    -fx-background-color: #252d42;
+    -fx-text-fill: #8a92a8;
+    -fx-border-color: #3a4560;
+    -fx-border-width: 1;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #2e3850;
+    -fx-text-fill: #e8eaf2;
+    -fx-border-color: #4f8ef7;
+}
+
+.btn-accent {
+    -fx-background-color: #4f8ef7;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.btn-accent:hover {
+    -fx-background-color: #3a70d4;
+    -fx-effect: dropshadow(gaussian, rgba(79,142,247,0.45), 10, 0, 0, 2);
+}
+
+.btn-accent:pressed {
+    -fx-background-color: #2d5db8;
+}
+
+.btn-danger {
+    -fx-background-color: #f76b6b;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #d94f4f;
+    -fx-effect: dropshadow(gaussian, rgba(247,107,107,0.4), 8, 0, 0, 2);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARDS CONTAINER
+   ───────────────────────────────────────────────────────────── */
+.cards-container {
+    -fx-background-color: transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CONSULTATION CARD (built in controller)
+   ───────────────────────────────────────────────────────────── */
+.consultation-card {
+    -fx-background-color: #1e2436;
+    -fx-background-radius: 12;
+    -fx-border-color: #252d42;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);
+    -fx-min-height: 140px;
+}
+
+.consultation-card:hover {
+    -fx-border-color: #4f8ef7;
+    -fx-background-color: #252d42;
+    -fx-effect: dropshadow(gaussian, rgba(79,142,247,0.2), 14, 0, 0, 3);
+}
+
+/* Left strip on consultation card */
+.consultation-card-strip {
+    -fx-background-color: #2ecc87;
+    -fx-background-radius: 12 0 0 12;
+    -fx-min-width: 6px;
+    -fx-pref-width: 6px;
+}
+
+/* Card info box padding */
+.consultation-card-info {
+    -fx-padding: 18 16 18 16;
+}
+
+/* Card action box padding */
+.consultation-card-actions {
+    -fx-padding: 0 24 0 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD TEXT ELEMENTS
+   ───────────────────────────────────────────────────────────── */
+.consultation-diagnosis {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf2;
+}
+
+.consultation-notes {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8a92a8;
+    -fx-wrap-text: true;
+}
+
+.consultation-date-box {
+    -fx-background-color: #172038;
+    -fx-background-radius: 6;
+    -fx-padding: 5 10 5 10;
+}
+
+.consultation-date-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4f8ef7;
+    -fx-font-weight: bold;
+}
+
+.meta-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8a92a8;
+}
+
+.meta-icon {
+    -fx-font-size: 11px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BADGES
+   ───────────────────────────────────────────────────────────── */
+.status-badge {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 8 3 8;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+.status-completed {
+    -fx-background-color: #0d2e1e;
+    -fx-text-fill: #2ecc87;
+    -fx-border-color: #1a5c3a;
+    -fx-border-width: 1;
+}
+
+.type-badge {
+    -fx-font-size: 10px;
+    -fx-padding: 3 8 3 8;
+    -fx-background-color: #252d42;
+    -fx-background-radius: 20;
+    -fx-border-color: #3a4560;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-text-fill: #8a92a8;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   EMPTY STATE
+   ───────────────────────────────────────────────────────────── */
+.empty-state-container {
+    -fx-padding: 80 0 80 0;
+}
+
+.empty-state-icon {
+    -fx-font-size: 52px;
+}
+
+.empty-state-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf2;
+}
+
+.empty-state-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8a92a8;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SCROLL PANE
+   ───────────────────────────────────────────────────────────── */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: #171b26;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #3a4560;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:vertical .thumb:hover,
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #4f8ef7;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}

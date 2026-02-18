@@ -23,7 +23,7 @@ public class SidebarController {
         navigateTo("/fxml/consultationview/DoctorConsultationView.fxml");
     }
 
-    @FXML private void handleProfile()  { navigateTo("/view/Profile.fxml"); }
+    @FXML private void handleProfile()  { navigateTo("/fxml/appointmentview/DoctorDashboard.fxml"); }
     @FXML private void handleSettings() { navigateTo("/fxml/consultationview/ConsultationListView.fxml"); }
 
     @FXML
@@ -47,10 +47,11 @@ public class SidebarController {
     private void navigateTo(String fxmlPath) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Stage  stage = (Stage) btnDashboard.getScene().getWindow();
+            Stage stage = (Stage) btnDashboard.getScene().getWindow();
             stage.getScene().setRoot(root);
         } catch (Exception e) {
-            System.err.println("[SidebarController] Navigation failed: " + fxmlPath + " → " + e.getMessage());
+            System.err.println("[SidebarController] Navigation failed: " + fxmlPath);
+            e.printStackTrace(); // ← ADD THIS
         }
     }
 }

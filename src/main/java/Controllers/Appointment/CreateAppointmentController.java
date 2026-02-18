@@ -118,7 +118,7 @@ public class CreateAppointmentController implements Initializable {
 
     @FXML
     private void handleOfflineType(ActionEvent event) {
-        selectedType = "IN_PERSON";
+        selectedType = "CABINE";
         setActiveButton(offlineButton);
         setInactiveButton(onlineButton);
     }

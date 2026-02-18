@@ -185,4 +185,30 @@ public class AppointmentRequestRepository {
                 : null);
         return a;
     }
+
+
+    /**
+     * Fetch all appointments for a given doctor, ordered newest first.
+     * Paste this inside the AppointmentRequestRepository class.
+     */
+    public List<AppointmentRequest> findByDoctorId(long doctorId) throws SQLException {
+        List<AppointmentRequest> list = new ArrayList<>();
+        String sql = "SELECT * FROM AppointmentRequest WHERE doctorId = ? ORDER BY creationDate DESC";
+        Connection conn = getConnection();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, doctorId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    AppointmentRequest app = mapRow(rs);
+                    app.setProposedDates(findProposedDatesByAppointmentId(app.getId()));
+                    list.add(app);
+                }
+            }
+        }
+        return list;
+    }
+
+
+
 }

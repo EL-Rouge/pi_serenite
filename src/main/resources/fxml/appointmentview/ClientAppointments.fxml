@@ -14,18 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:controller="Controllers.Appointment.ClientAppointmentsController"
-            stylesheets="@../../css/styles.css"
+            stylesheets="@../../css/appointmentcss/clientappointment.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 
-    <!-- Include Navbar -->
-    <top>
-        <fx:include source="../Navbar.fxml"/>
-    </top>
+        <!-- Include Navbar -->
+        <top>
+            <fx:include source="../Navbar.fxml"/>
+        </top>
 
-    <!-- Include Sidebar -->
-    <left>
-        <fx:include source="../Sidebar.fxml"/>
-    </left>
+        <!-- Include Sidebar -->
+        <left>
+            <fx:include source="../Sidebar.fxml"/>
+        </left>
 
     <!-- Main Content Area -->
     <center>

@@ -103,5 +103,28 @@ public class AppointmentRequestService {
         app.setStatus(newStatus);
         repository.update(app);
     }
+
+
+
+    /**
+     * Get all appointments for a specific doctor.
+     * Paste this inside the AppointmentRequestService class.
+     */
+    public List<AppointmentRequest> getAppointmentsByDoctorId(long doctorId) throws SQLException {
+        return repository.findByDoctorId(doctorId);
+    }
+
+    /**
+     * Refuse an appointment — sets status to REFUSED.
+     * Paste this inside the AppointmentRequestService class.
+     */
+    public void refuseAppointment(long id) throws SQLException {
+        AppointmentRequest app = getById(id);
+        if (!app.getStatus().equalsIgnoreCase("PENDING")) {
+            throw new IllegalStateException("Only PENDING appointments can be refused.");
+        }
+        app.setStatus("REFUSED");
+        repository.update(app);
+    }
     
 }

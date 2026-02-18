@@ -54,7 +54,7 @@
 
     <!-- Profile -->
     <Button fx:id="btnProfile"
-            text="👤  Profile"
+            text="👤  dashboard"
             styleClass="sidebar-btn"
             maxWidth="Infinity"
             onAction="#handleProfile"/>
